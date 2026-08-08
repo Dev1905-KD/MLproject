@@ -28,22 +28,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logger.info("Entered the data ingestion method or component")
         try:
-            possible_paths = [
-                os.path.join("notebook", "data", "stud.csv"),
-                "stud.csv",
-                os.path.join("artifacts", "data.csv")
-            ]
-            csv_path = None
-            for p in possible_paths:
-                if os.path.exists(p):
-                    csv_path = p
-                    break
-            
-            if csv_path is None:
-                raise FileNotFoundError("Could not find stud.csv dataset file.")
-
-            df = pd.read_csv(csv_path)
-            logger.info(f"Read dataset from {csv_path} as dataframe")
+            df = pd.read_csv(os.path.join("notebook/data", "stud.csv"))
+            logger.info("Read the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
@@ -74,3 +60,4 @@ if __name__ == "__main__":
 
     model_trainer = ModelTrainer()
     r2_square = model_trainer.initiate_model_trainer(train_arr, test_arr)
+    print(f"R2 square score: {r2_square}")
