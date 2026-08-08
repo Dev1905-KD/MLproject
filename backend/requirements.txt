@@ -1,12 +1,10 @@
+fastapi
+uvicorn
+pydantic
 pandas
 numpy
-seaborn
-matplotlib
 scikit-learn
-dill
 catboost
 xgboost
-fastapi
-uvicorn[standard]
+dill
 python-multipart
--e .
